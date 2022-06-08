@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil petits plats gourmands</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/png" href="favicon_lespetitsplats.png" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+
+  <header>
+
+    <div class="containerHeader">
+      <div class="row">
+        <div class="header">
+          <img src="./img/logo_lespetitsplats.png" class="logo" />
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <body>
+ 
+
+      
+<!--SEARCH--> 
+<div class="containerSearch">     
+        
+          <div class="searchRecipes">
+            <label for="search">
+              <i class="fas fa-search loupe"></i>
+            </label>
+            <input
+              class="input"    
+              type="text"
+              id="search"
+              placeholder="Rechercher une recette ..."
+              minlength="2"
+              maxlength="30"
+            /> 
+          </div>
+
+
+          <!-- Tags -->
+         </div> 
+          <div class="tagsWrapper">
+       <div class="tagsContainer">
+            <ul class="tags"></ul>
+          </div>
+         </div>
+
+           
+
+        <!--ComboBox autocomplète-->
+          <div class="wrapperCombo">
+            <div class="containerCombo">
+
+         <form autocomplete="off">
+      <div class="box">
+        <input type="text" id="input1" class="inputCombo1" placeholder="Ingredients ..." maxlength="17" />
+        <img src="img/angle-down-solid.svg" class="arrow-down">
+      </div>
+      <ul class="list"></ul>
+    </form>
+          
+
+    <form autocomplete="off">
+      <div class="box">
+        <input type="text" id="input2" class="inputCombo2" placeholder="Appareils ..." maxlength="17" />
+        <img src="img/angle-down-solid.svg" class="arrow-down">
+      </div>
+      <ul class="list"></ul>
+    </form>
+           
+
+            <form autocomplete="off">
+      <div class="box">
+        <input type="text" id="input3" class="inputCombo3" placeholder="Ustensiles ..." maxlength="17" />
+        <img src="img/angle-down-solid.svg" class="arrow-down">
+      </div>
+      <ul class="list"></ul>
+    </form>
+           </div> 
+          </div>
+     </div>
+      
+     
+    
+  <!--CARD-->
+      <div class="wrapperCards">
+        <div class="containerCards"></div>  
+         </div>
+             
+  </body>
+
+ 
+
+ 
+
+  <script src="./recipes.js"></script>
+  <script src="./search.js"></script>
+  
+  <script src="./cards.js"></script> 
+  <script src="./comboBox.js"></script>
+  
+</html>
