@@ -1,6 +1,7 @@
 let input = document.querySelector(".inputCombo1");
 let input2 = document.querySelector(".inputCombo2");
 let input3 = document.querySelector(".inputCombo3");
+let arrow = document.querySelector(".toggleArrow");
 
 let component = [];
 let ustensile = [];
@@ -53,14 +54,14 @@ function createItem(parent, listing) {
   let listItem = document.createElement("li");
   listItem.classList.add("list-items");
   listItem.style.cursor = "pointer";
- // listItem.setAttribute("onclick", "displayTags('" + listing + "')");
-listItem.addEventListener("click", displayTags.bind(null, listing));
+  // listItem.setAttribute("onclick", "displayTags('" + listing + "')");
+  listItem.addEventListener("click", displayTags.bind(null, listing));
   let word = listing;
   //afficher la valeur dans le tableau
   listItem.innerText = word;
-  parent.querySelector(".list").appendChild(listItem);
+  parent.querySelector(".ulCombo").appendChild(listItem);
 }
-
+// parent.innerHTML = "";
 //regarder/compréhension
 //event.target
 //possibilité 1) //listItem.addEventListener( "click", displayTags.bind( null, i ) );
@@ -72,78 +73,55 @@ const combos = [
   { input: input3, list: sortedUstensile },
 ];
 
+
+//Réinitialisation du combo sur le click d'un autre combo
+function initCombo() {
+for (let combo of combos) {
+combo.input.addEventListener("click", (e) => {
+combos.forEach((close) => (close.input.value = ""));
+removeElements();
+})
+}
+}
+
+
+
+
 for (let combo of combos) {
   combo.input.addEventListener("keyup", (e) => {
-    //
+   // arrow.classList.toggle("toggleArrow");
+    //    console.log(e.arrow);
+ 
+    removeElements(parent);
     for (let listing of combo.list) {
-    
       if (
-        listing.toLowerCase().includes(combo.input.value.toLowerCase()) &&
+        listing.toLowerCase().startsWith(combo.input.value.toLowerCase()) &&
         combo.input.value != ""
-       
       ) {
         const parent = combo.input.closest("form");
         createItem(parent, listing);
       }
-   }
+    }
   });
 }
- 
-//Exécution la fonction sur keyup
-// input.addEventListener("keyup", (e) => {
-//   removeElements();
-//   for (let i of sortedIngredients) {
-//     if (
-//       i.toLowerCase().includes(input.value.toLowerCase()) &&
-//       input.value != ""
-//     ) {
-//       const parent = input.closest("form");
-//       createItem(parent, i);
-//     }
-//   }
-// });
-
-// input2.addEventListener("keyup", (e) => {
-//   removeElements();
-//   for (let j of sortedAppareils) {
-//     if (
-//       j.toLowerCase().startsWith(input2.value.toLowerCase()) &&
-//       input2.value != ""
-//     ) {
-//        const parent = input2.closest("form");
-//       createItem(parent, j);
-//     }
-//   }
-// });
-
-// input3.addEventListener("keyup", (e) => {
-//   removeElements();
-//   for (let k of sortedUstensile) {
-//     if (
-//       k.toLowerCase().startsWith(input3.value.toLowerCase()) &&
-//       input3.value != ""
-//     ) {
-//        const parent = input3.closest("form");
-//       createItem(parent, k);
-//     }
-//   }
-// });
 
 function removeElements() {
   //effacer tous les items
   let items = document.querySelectorAll(".list-items");
   items.forEach((item) => {
     item.remove();
+    initCombo();
+    combos.forEach(close => close.input.value = "") 
   });
 }
+
+// arrow.classList.toggle("toggleArrow");
 
 function displayTags(value) {
   let listTags = document.createElement("li");
   listTags.classList.add("list-tags");
   const tags = document.querySelector(".tags").appendChild(listTags);
   listTags.innerText = value;
-  //test// listTags.innerHTML = "huile d'olives";
-  input.value = "";
   let closeTags = document.createElement("img");
   closeTags.src = "img/times-circle-regular.svg";
   closeTags.classList.add("closedtag");
@@ -155,8 +133,10 @@ function displayTags(value) {
   removeElements();
 }
 
-//arrow = document.querySelector(".arrow-down");
-// arrow.style.display.transform = "rotate(180deg)"
+//arrow = document.querySelector(".toggleArrow");
+// arrow.classList.toggle("toggleArrow")
+
+//réinitialisation du combo (à placer dans un click pour switcher sur les combos)
 
 //localStorage.setItem();
 //localStorage.clear();
